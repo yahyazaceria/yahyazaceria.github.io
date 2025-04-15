@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yahya's Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .friendly-font {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        /* Typewriter effect styles */
+        .typewriter-container {
+            position: relative;
+            display: inline-block;
+            width: 230px; /* Fixed width to prevent layout shifts */
+        }
+        
+        .typewriter {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            position: relative;
+            white-space: nowrap;
+            font-family: monospace; /* Keep the monospace font */
+        }
+        
+        /* Cursor style for the blinking effect */
+        .cursor-blink {
+            display: inline-block;
+            width: 3px;
+            height: 1.2em;
+            background-color: #fff;
+            margin-left: 2px;
+            vertical-align: middle;
+            position: relative;
+            top: 0;
+            transform: translateY(-10%);
+            animation: blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes blink-caret {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <nav class="flex items-center p-4 px-8 bg-transparent pt-5">
+        <!-- Left section with fixed width -->
+        <div class="w-1/4">
+            <a href="https://www.linkedin.com/in/yahya-zaceria-378abb250/" class="no-underline transition-colors hover:text-blue-300">
+                <div class="typewriter-container">
+                    <div class="typewriter" id="typewriter"></div>
+                </div>
+            </a>
+        </div>
+        
+        <!-- Center section that stays centered -->
+        <div class="flex items-center justify-center w-2/4">
+            <a href="index.html" class="mx-4 py-2 px-3 text-white font-bold no-underline transition-colors hover:text-blue-300 friendly-font text-lg">Home</a>
+            <a href="about.html" class="mx-4 py-2 px-3 text-white no-underline transition-colors hover:text-blue-300 friendly-font text-lg">About</a>
+            <a href="experience.html" class="mx-4 py-2 px-3 text-white no-underline transition-colors hover:text-blue-300 friendly-font text-lg">Experience</a>
+            <a href="projects.html" class="mx-4 py-2 px-3 text-white no-underline transition-colors hover:text-blue-300 friendly-font text-lg">Projects</a>
+        </div>
+        
+        <!-- Right section with fixed width -->
+        <div class="flex items-center justify-end w-1/4">
+            <a href="contact.html" class="bg-blue-600 text-white py-2 px-6 rounded-full no-underline transition-colors hover:bg-blue-500">Contact Me</a>
+        </div>
+    </nav>
+
+    <div class="flex justify-center items-center h-[calc(100vh-70px)]">
+        <div class="text-center">
+            <h1 class="text-5xl text-white font-extrabold">Welcome!</h1>
+        </div>
+    </div>
+
+    <script>
+        const text = "Yahya Zaceria";
+        const typewriterElement = document.getElementById('typewriter');
+        let i = 0;
+        
+        function typeWriter() {
+            if (i < text.length) {
+                // Add the next character
+                typewriterElement.innerHTML = text.substring(0, i+1) + '<span class="cursor-blink"></span>';
+                i++;
+                setTimeout(typeWriter, 150);
+            } else {
+                // Typing is complete, remove the cursor
+                typewriterElement.innerHTML = text;
+            }
+        }
+        
+        // Start typing as soon as page loads
+        window.onload = function() {
+            setTimeout(typeWriter, 500);
+        };
+    </script>
+</body>
+</html>
