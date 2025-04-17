@@ -48,9 +48,19 @@
 	deniedCount:0, //times caps is pressed for Access Denied
 	init: function(){// inizialize Hacker Typer
 		accessCountimer=setInterval(function(){Typer.updLstChr();},500); // inizialize timer for blinking cursor
-		$.get(Typer.file,function(data){// get the text file
-			Typer.text=data;// save the textfile in Typer.text
-			Typer.text = Typer.text.slice(0, Typer.text.length-1);
+		$.ajax({
+			url: Typer.file,
+			dataType: 'text',
+			cache: false,
+			success: function(data) {
+				Typer.text = data;
+				Typer.text = Typer.text.slice(0, Typer.text.length-1);
+			},
+			error: function(xhr, status, error) {
+				console.error("Error loading file:", error);
+				// Fallback content if file can't be loaded
+				Typer.text = "<h2>Error loading content. Please check console for details.</h2>";
+			}
 		});
 	},
  
@@ -147,7 +157,11 @@ function replaceUrls(text) {
 }
 }
 Typer.speed=3;
-Typer.file="Yahya.txt";
+if (window.location.hostname.includes('github.io')) {
+  Typer.file = window.location.pathname.replace(/\/[^\/]*$/, '') + "/Yahya.txt";
+} else {
+  Typer.file = "Yahya.txt";
+}
 Typer.init();
  
 var timer = setInterval("t();", 40);
