@@ -157,12 +157,30 @@ function replaceUrls(text) {
 }
 }
 Typer.speed=3;
-if (window.location.hostname.includes('github.io')) {
-  Typer.file = window.location.pathname.replace(/\/[^\/]*$/, '') + "/Yahya.txt";
-} else {
-  Typer.file = "Yahya.txt";
-}
-Typer.init();
+// Directly embed the content instead of loading from a file
+Typer.text = `<h2><span id="a">Yahya@Zaceria</span>:<span id="b">~</span><span id="c">$</span> cat yahya.txt </h2><br/>
+<h2>Hi, I'm Yahya Zaceria.<!-- laglaglaglaglaglaglaglaglaglaglaglag -->
+<p>13-year-old developer passionate about software & hardware. Built websites, Raspberry Pi projects, and mastered 5+ programming languages. Founder's Award winner and USACO Silver competitor. Constantly learning and innovating at the intersection of creativity and technology.<!-- slightdelayhere--><!-- longlongcomment --></p></h2>
+
+<h3><span id="a">Yahya@Zaceria</span>:<span id="b">~</span><span id="c">$</span> ls skills/ </h3><br/>
+<h2>• Python
+• C/C++
+• Web Development
+• Web Design
+• Git/Github
+• Raspberry Pi
+• Deep Learning<p></p></h2>
+
+<h3><span id="a">Yahya@Zaceria</span>:<span id="b">~</span><span id="c">$</span> Contact Me </h3><br/>
+<h2>Email address: <a href="mailto:yusmanzac@gmail.com">yusmanzac@gmail.com</a>
+LinkedIn: <a href="https://www.linkedin.com/in/yahya-zaceria-378abb250/">Yahya Zaceria</a>
+GitHub: <a href="https://github.com/yahyazaceria">yahyazaceria</a><p></p></h2>
+
+<h3><span id="a">Yahya@Zaceria</span>:<span id="b">~</span><span id="c">$</span> Quote of the Day </h3><br/>
+<h2>Code is like humor. When you have to explain it, it's bad.</h2>`;
+
+// Skip the file loading part and just initialize the timer
+accessCountimer=setInterval(function(){Typer.updLstChr();},500);
  
 var timer = setInterval("t();", 40);
 function t() {
