@@ -1,6 +1,6 @@
 <html> 
 <head> 
-<title>Yahya Zaceria</title> 
+<title>Aditya's Vartika</title> 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> 
 <style type="text/css"> 
 	body {
@@ -14,12 +14,6 @@
 		margin-right:auto;
 		margin-top:auto;
 		font-size:14px;
-	}
-	/* Add spacing control for heading elements */
-	#console h1, #console h2, #console h3 {
-		margin: 0;
-		padding: 0;
-		line-height: 1.2;
 	}
 	a {
 		color: #0bc;
@@ -113,11 +107,7 @@
 			var text=Typer.text.substring(0,Typer.index)// parse the text for stripping html enities
 			var rtn= new RegExp("\n", "g"); // newline regex
 	
-			// More aggressive processing to eliminate extra spaces
-			text = text.replace(/<\/h[1-6]>\s*<h[1-6]/g, "</h$1><h$2"); // Remove spaces between heading tags
-			text = text.replace(/>\s+</g, "><"); // Remove whitespace between tags
-			text = text.replace(/\n\s*\n/g, "\n"); // Remove empty lines
-			$("#console").html(text.replace(rtn,"<br/>"));// replace newline chars with br
+			$("#console").html(text.replace(rtn,"<br/>"));// replace newline chars with br, tabs with 4 space and blanks with an html blank
 			window.scrollBy(0,50); // scroll to make sure bottom is always visible
 		}
 		if ( key.preventDefault && key.keyCode != 122 ) { // prevent F11(fullscreen) from being blocked
@@ -147,7 +137,7 @@ function replaceUrls(text) {
 }
 }
 Typer.speed=3;
-Typer.file="Yahya.txt";
+Typer.file="Aditya.txt";
 Typer.init();
  
 var timer = setInterval("t();", 40);
