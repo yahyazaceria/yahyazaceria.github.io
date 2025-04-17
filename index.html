@@ -12,6 +12,7 @@
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            overflow-x: hidden;
         }
         .friendly-font {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -52,37 +53,332 @@
             from, to { opacity: 1; }
             50% { opacity: 0; }
         }
+        
+        /* Wave/Cloud border styles */
+        .wave-container {
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            z-index: 1;
+        }
+        
+        .wave-top {
+            position: absolute;
+            top: 0;
+        }
+        
+        .wave-bottom {
+            position: relative; /* Change to relative to follow normal document flow */
+            margin-top: -2px; /* Ensure no gap between content and cloud */
+        }
+        
+        .wave-svg {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 150px; /* Return to default height */
+        }
+        
+        .wave-top .wave-svg {
+            height: 200px; /* Increased height specifically for top pattern */
+        }
+        
+        /* Multiple cloud color shades */
+        .wave-fill-dark {
+            fill: #0f172a; /* Darkest shade - base color */
+        }
+        
+        .wave-fill-medium {
+            fill: #1e293b; /* Medium shade */
+        }
+        
+        .wave-fill-light {
+            fill: #334155; /* Lightest shade */
+        }
+        
+        /* Container for main content to ensure it's above waves */
+        .content-container {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+        }
+        
+        /* Additional CSS for contact section */
+        .contact-cloud-section {
+            background-color: transparent;
+            margin-bottom: -100px; /* Pull up into the cloud */
+            position: relative;
+            z-index: 20;
+        }
+        
+        /* Adjust bottom cloud container styling */
+        .bottom-container {
+            position: relative;
+            background-color: transparent; /* Remove background color */
+            padding-top: 20px;
+            padding-bottom: 50px;
+            margin-top: 0;
+        }
+        
+        /* Contact card styling - make slightly darker for contrast */
+        .contact-card {
+            background-color: rgba(30, 41, 59, 0.85); /* Slightly transparent for background blend */
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); /* Enhanced shadow for better contrast */
+            margin-top: 20px;
+        }
+        
+        /* Wave SVG positioning - adjust to sit directly below projects */
+        .wave-container.wave-bottom {
+            position: relative;
+            transform: translateY(0);
+            z-index: 30;
+            margin-bottom: 0;
+        }
+
+        /* Contact section positioning */
+        #contact {
+            position: relative;
+            padding-top: 40px;
+            margin-top: 0;
+        }
+
+        /* Placeholder for Projects Section - add more space */
+        #projects {
+            padding-bottom: 60px;
+            margin-bottom: 0;
+        }
+
+        /* Adjust wave SVG height for bottom cloud */
+        .wave-bottom .wave-svg {
+            height: 200px; /* Match top cloud height */
+        }
+
+        /* Ensure contact section header has no background */
+        #contact h2 {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow for better readability */
+        }
     </style>
 </head>
 <body class="min-h-screen">
-    <nav class="flex items-center p-4 px-8 bg-transparent pt-5">
-        <!-- Left section with fixed width -->
-        <div class="w-1/4">
-            <a href="https://www.linkedin.com/in/yahya-zaceria-378abb250/" class="no-underline transition-colors hover:text-blue-300">
-                <div class="typewriter-container">
-                    <div class="typewriter" id="typewriter"></div>
-                </div>
-            </a>
-        </div>
-        
-        <!-- Center section that stays centered -->
-        <div class="flex items-center justify-center w-2/4">
-            <a href="index.html" class="mx-4 py-2 px-3 text-white font-bold no-underline transition-colors hover:text-blue-300 friendly-font text-lg">Home</a>
-            <a href="about.html" class="mx-4 py-2 px-3 text-white no-underline transition-colors hover:text-blue-300 friendly-font text-lg">About</a>
-            <a href="experience.html" class="mx-4 py-2 px-3 text-white no-underline transition-colors hover:text-blue-300 friendly-font text-lg">Experience</a>
-            <a href="projects.html" class="mx-4 py-2 px-3 text-white no-underline transition-colors hover:text-blue-300 friendly-font text-lg">Projects</a>
-        </div>
-        
-        <!-- Right section with fixed width -->
-        <div class="flex items-center justify-end w-1/4">
-            <a href="contact.html" class="bg-blue-600 text-white py-2 px-6 rounded-full no-underline transition-colors hover:bg-blue-500">Contact Me</a>
-        </div>
-    </nav>
+    <!-- Top wave/cloud pattern with multiple overlapping paths -->
+    <div class="wave-container wave-top">
+        <svg class="wave-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 150" preserveAspectRatio="none">
+            <!-- Darkest base layer - covers most area -->
+            <path class="wave-fill-dark" d="M0,0 L0,90 C150,120 350,95 500,100 C650,105 750,125 900,115 C1050,105 1150,90 1200,100 L1200,0 Z"></path>
+            
+            <!-- Medium layer - middle coverage -->
+            <path class="wave-fill-medium" d="M0,0 L0,75 C100,95 200,85 300,80 C450,70 550,100 700,90 C850,80 1000,95 1200,80 L1200,0 Z"></path>
+            
+            <!-- Lightest layer - smallest bumps on top -->
+            <path class="wave-fill-light" d="M0,0 L0,60 C200,85 350,65 450,70 C600,80 750,60 850,65 C950,70 1100,60 1200,70 L1200,0 Z"></path>
+        </svg>
+    </div>
+    
+    <!-- Content container to ensure content is above waves -->
+    <div class="content-container">
+        <nav class="flex items-center p-4 px-8 bg-transparent pt-5">
+            <!-- Left section with fixed width -->
+            <div class="w-1/4">
+                <a href="https://www.linkedin.com/in/yahya-zaceria-378abb250/" class="no-underline transition-colors hover:text-blue-300">
+                    <div class="typewriter-container">
+                        <div class="typewriter" id="typewriter"></div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Center section that stays centered -->
+            <div class="flex items-center justify-center w-2/4">
+                <a href="#top" class="mx-4 py-2 px-3 text-white font-bold no-underline transition-colors hover:text-blue-300 friendly-font text-lg">Home</a>
+                <a href="#about" class="mx-4 py-2 px-3 text-white no-underline transition-colors hover:text-blue-300 friendly-font text-lg">About</a>
+                <a href="#skills" class="mx-4 py-2 px-3 text-white no-underline transition-colors hover:text-blue-300 friendly-font text-lg">Skills</a>
+                <a href="#projects" class="mx-4 py-2 px-3 text-white no-underline transition-colors hover:text-blue-300 friendly-font text-lg">Projects</a>
+            </div>
+            
+            <!-- Right section with fixed width -->
+            <div class="flex items-center justify-end w-1/4">
+                <a href="#contact" class="bg-blue-600 text-white py-2 px-6 rounded-full no-underline transition-colors hover:bg-blue-500 friendly-font">Contact Me</a>
+            </div>
+        </nav>
 
-    <div class="flex justify-center items-center h-[calc(100vh-70px)]">
-        <div class="text-center">
-            <h1 class="text-5xl text-white font-extrabold">Welcome!</h1>
-        </div>
+        <!-- Home Section - Add more space -->
+        <section id="home" class="min-h-[85vh] flex justify-center items-center">
+            <div class="text-center">
+                <h1 class="text-5xl text-white font-extrabold mb-6">Welcome!</h1>
+                <p class="text-xl text-white friendly-font max-w-2xl mx-auto">
+                    I'm a 13-year-old passionate about building innovative software and hardware solutions.
+                </p>
+            </div>
+        </section>
+
+        <!-- About Me Section - Removed profile picture -->
+        <section id="about" class="py-16 px-6 md:px-12 bg-slate-900 bg-opacity-50">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-4xl text-white font-bold mb-12 friendly-font">About Me</h2>
+                
+                <!-- Simplified layout without the photo column -->
+                <div>
+                    <p class="text-white text-lg mb-6 friendly-font leading-relaxed">
+                        Hello! I'm Yahya Zaceria, a 13-year-old passionate about building innovative software and hardware solutions. My journey in technology began with simple curiosity and has evolved into creating functional, impactful projects.
+                    </p>
+                    
+                    <p class="text-white text-lg mb-6 friendly-font leading-relaxed">
+                        I've developed websites, built various Raspberry Pi projects, and become proficient in over 5 programming languages. My technical toolkit continues to grow as I explore new technologies and challenges.
+                    </p>
+                    
+                    <p class="text-white text-lg mb-6 friendly-font leading-relaxed">
+                        My dedication to technology has earned me recognition, including a Founder's Award at a science fair and achieving Silver rank in the USACO programming competition. These achievements motivate me to push boundaries and create even more impressive solutions.
+                    </p>
+                    
+                    <p class="text-white text-lg friendly-font leading-relaxed">
+                        When I'm not coding, I enjoy thinking about how to combine creativity with technology to bring new ideas to life. I'm constantly learning, growing, and innovating in the ever-evolving tech landscape.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Skills Section - Remove the blue translucent background -->
+        <section id="skills" class="py-20 px-6 md:px-12">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-4xl text-white font-bold mb-12 friendly-font">Skills & Technologies</h2>
+                
+                <!-- Skills Categories -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Frontend Category -->
+                    <div class="bg-slate-800 rounded-lg p-6 shadow-lg">
+                        <h3 class="text-2xl text-white font-bold mb-4 friendly-font">Frontend</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <div class="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
+                                <span class="text-white friendly-font">HTML5</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
+                                <span class="text-white friendly-font">CSS3</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
+                                <span class="text-white friendly-font">JavaScript</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
+                                <span class="text-white friendly-font">React</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
+                                <span class="text-white friendly-font">TailwindCSS</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
+                                <span class="text-white friendly-font">TypeScript</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Backend Category -->
+                    <div class="bg-slate-800 rounded-lg p-6 shadow-lg">
+                        <h3 class="text-2xl text-white font-bold mb-4 friendly-font">Backend</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                                <span class="text-white friendly-font">Python</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                                <span class="text-white friendly-font">C</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                                <span class="text-white friendly-font">C++</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                                <span class="text-white friendly-font">SQL</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                                <span class="text-white friendly-font">Node.js</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                                <span class="text-white friendly-font">Java</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Tools & Others Category -->
+                    <div class="bg-slate-800 rounded-lg p-6 shadow-lg">
+                        <h3 class="text-2xl text-white font-bold mb-4 friendly-font">Tools & Others</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <div class="w-3 h-3 bg-purple-500 rounded-full mr-3"></div>
+                                <span class="text-white friendly-font">Git & GitHub</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-3 h-3 bg-purple-500 rounded-full mr-3"></div>
+                                <span class="text-white friendly-font">VS Code</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-3 h-3 bg-purple-500 rounded-full mr-3"></div>
+                                <span class="text-white friendly-font">Figma</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-3 h-3 bg-purple-500 rounded-full mr-3"></div>
+                                <span class="text-white friendly-font">Jupyter Notebook</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-3 h-3 bg-purple-500 rounded-full mr-3"></div>
+                                <span class="text-white friendly-font">RaspberryPi</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-3 h-3 bg-purple-500 rounded-full mr-3"></div>
+                                <span class="text-white friendly-font">Deep Learning</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Projects Section - Add blue translucent background -->
+        <section id="projects" class="py-20 px-6 md:px-12 bg-slate-900 bg-opacity-50">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-4xl text-white font-bold mb-12 friendly-font">Projects</h2>
+                <p class="text-white text-lg friendly-font">Coming soon...</p>
+            </div>
+        </section>
+    </div> <!-- Close content-container -->
+
+    <!-- Contact section without cloud pattern -->
+    <div class="bottom-container">
+        <!-- Contact section with no cloud above it -->
+        <section id="contact" class="py-10 px-6 md:px-12 relative z-20">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-4xl text-white font-bold mb-12 friendly-font">Contact Me</h2>
+                
+                <div class="contact-card p-8">
+                    <p class="text-white text-lg mb-8 friendly-font">
+                        Feel free to contact me through any of these platforms.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-6 justify-center">
+                        <a href="contact.html" class="bg-blue-600 hover:bg-blue-500 text-white py-3 px-8 rounded-full no-underline transition-colors friendly-font flex items-center">
+                            <span>Email Me</span>
+                        </a>
+                        
+                        <a href="https://www.linkedin.com/in/yahya-zaceria-378abb250/" class="bg-blue-800 hover:bg-blue-700 text-white py-3 px-8 rounded-full no-underline transition-colors friendly-font flex items-center">
+                            <span>LinkedIn</span>
+                        </a>
+                        
+                        <a href="https://github.com/" class="bg-gray-700 hover:bg-gray-600 text-white py-3 px-8 rounded-full no-underline transition-colors friendly-font flex items-center">
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
     <script>
